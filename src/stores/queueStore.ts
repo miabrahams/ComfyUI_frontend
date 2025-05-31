@@ -482,11 +482,10 @@ export const useQueueStore = defineStore('queue', () => {
   // Update deduplication with 1-update buffer.
   // If an update is in progress, don't start another one. Instead, set a flag saying that another update is needed.
   let inFlight = false // true if request currently running
-  let buffered = false // Will we need to run another cycle after this one
+  let buffered = false // run another cycle after this one
 
   const update = () => {
     if (inFlight) {
-      // set flag and return early
       buffered = true
       return
     }
